@@ -9,10 +9,9 @@ library(fredr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
-library(pRev)
 
 date = gsub("-","",Sys.Date())
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 
 file_name = paste0("graph_US_gov_bond", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -31,7 +30,7 @@ us_breakeven = data.frame(date = us_bond_10Y$date,
                           value = us_bond_10Y$value - us_bond_10Y_infl$value)
 # 10-Year Breakeven Inflation Rate (T10YIE)
 
-df_us_bond = rbind(us_bond_10Y, us_bond_10Y_infl, us_breakeven)
+df_us_bond = dplyr::bind_rows(us_bond_10Y, us_bond_10Y_infl, us_breakeven)
 
 df_us_bond = df_us_bond %>%
   mutate(name = case_when(series_id == "DFII10" ~ "Obligations indexées sur l'inflation",
@@ -93,6 +92,5 @@ graph_us_gov_bond = ggplot(data = df_us_bond,
     legend.position = "bottom"
   ) 
 
-graph_us_gov_bond + ggsave(filename = file_graph, width = 12, height = 7)
+graph_us_gov_bond %>%  ggsave(filename = file_graph, width = 12, height = 7)
 
-export_graph(graph_us_gov_bond, perim = "FI", folder_name = "us_gov_bond")

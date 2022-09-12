@@ -10,10 +10,9 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(RColorBrewer)
-library(pRev)
 
 date = gsub("-","",Sys.Date())
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 
 file_name = paste0("graph_FED_balance_sheet", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -175,12 +174,9 @@ graph_fed_bs =
     legend.position = "bottom"
   )
 
-graph_fed_bs + ggsave(filename = file_graph, width = 20, height = 11)
+graph_fed_bs %>% ggsave(filename = file_graph, width = 20, height = 11)
 
 
-
-
-# export_minio_graph(graph_fed_bs, perim = "FI", folder_name = "fed_balance_sheet", update = TRUE)
 
 gdp = fredr(series_id = "GDP", observation_start = start_time) %>%
   dplyr::rename(gdp = value)
@@ -197,4 +193,3 @@ df_tot = df %>%
 df %>%
   filter(date == "2021-05-26")
 
-1371.843 + 2474.060 + 2.347

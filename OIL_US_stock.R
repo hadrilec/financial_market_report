@@ -3,11 +3,10 @@
 library(eia)
 library(tidyverse)
 library(lubridate)
-library(pRev)
 
-link_oil =  "M:/Usuels.dsc/pRev/OIL"
-link_oil_graph = file.path(link_oil, "graph")
-link_oil_code = file.path(link_oil, "code")
+link_oil =  Sys.getenv("HOME")
+link_oil_graph = Sys.getenv("HOME")
+link_oil_code = Sys.getenv("HOME")
 
 file_us_stock_oil_weekly = file.path(link_oil_graph, "US_oil_stock_weekly.pdf")
 
@@ -108,7 +107,5 @@ ggplot(PET.WCESTUS1.W_data, aes(x = date2, y = mean_, colour = year_, group = ye
     legend.position = "bottom"
   ) 
 
-gg_us_stock_oil_weekly + ggsave(file = file_us_stock_oil_weekly, width = 15, height = 10)
+gg_us_stock_oil_weekly %>% ggsave(file = file_us_stock_oil_weekly, width = 15, height = 10)
 
-export_graph(gg_us_stock_oil_weekly, perim = "OIL",
-             folder_name = "us_oil_stock_weekly", update = T)

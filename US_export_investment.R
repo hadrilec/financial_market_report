@@ -11,7 +11,7 @@ library(ggplot2)
 library(tidyverse)
 
 date = gsub("-","",Sys.Date())
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 
 file_name = paste0("graph_US_export_investment", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -77,4 +77,4 @@ graph_us_export_invest = ggplot(data = df,
     legend.position = "bottom"
   ) 
 
-graph_us_export_invest + ggsave(filename = file_graph, width = 12, height = 7)
+graph_us_export_invest %>%  ggsave(filename = file_graph, width = 12, height = 7)

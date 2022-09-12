@@ -12,7 +12,7 @@ library(tidyverse)
 library(tidyr)
 
 
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 
 file_name = paste0("graph_euro_exchange_rates_zoom", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -124,12 +124,7 @@ graph_eur_exr_zoom = ggplot(data = data,
     legend.position = "bottom"
   ) 
 
-graph_eur_exr_zoom + ggsave(filename = file_graph, width = 12, height = 7)
-
-# graph_eur_exr_zoom2 = graph_eur_exr_zoom 
-
-export_graph(graph_eur_exr_zoom, folder_name = "euro_taux_change", perim = "FI")
-# export_graph(graph_eur_exr_zoom, folder_name = "euro_dollar2", perim = "FI")
+graph_eur_exr_zoom %>%  ggsave(filename = file_graph, width = 12, height = 7)
 
 data_q = data %>% 
   filter(str_detect(label, "DOLLAR")) %>% 

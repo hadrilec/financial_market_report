@@ -10,7 +10,7 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 file_name = paste0("graph_EU_inflation_forecasts", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
 
@@ -83,4 +83,4 @@ ggplot() +
   ) 
 
 
-gg + ggsave(filename = file_graph, width = 12, height = 7)
+gg %>%  ggsave(filename = file_graph, width = 12, height = 7)

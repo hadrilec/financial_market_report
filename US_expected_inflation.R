@@ -9,7 +9,6 @@ library(fredr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
-library(pRev)
 
 link = 'https://api.db.nomics.world/v22/series/SCSMICH/MPX1PX5?limit=1000&offset=0&q=inflation%20michigan&observations=1&align_periods=1&dimensions=%7B%7D'
 data <- rdbnomics::rdb_by_api_link(link)
@@ -17,7 +16,7 @@ data <- rdbnomics::rdb_by_api_link(link)
 data = data %>%
   filter(period >= '2007-01-01')
 
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 
 file_name = paste0("graph_US_expected_inflation", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -72,6 +71,5 @@ graph_us_exp_inflation = ggplot(data = data,
 
 graph_us_exp_inflation
 
-graph_us_exp_inflation + ggsave(filename = file_graph, width = 12, height = 7)
+graph_us_exp_inflation %>%  ggsave(filename = file_graph, width = 12, height = 7)
 
-# export_graph(graph_us_exp_inflation, perim = "FI", folder_name = "us_exp_inflation")

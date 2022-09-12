@@ -9,10 +9,9 @@ library(fredr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
-library(pRev)
 
-date = gsub("-","",Sys.Date())
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+date = gsub("-","", Sys.Date())
+link_cahierFI_graph = Sys.getenv("HOME")
 
 file_name = paste0("graph_oil_price", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -131,7 +130,7 @@ oil_2 = oil_ %>%
   drop_na() %>% 
   filter(value != 0)
 
-yaxis_breaks = seq(from = floor(min(oil_2$value, na.rm = TRUE) / coeff) * coeff,
+yaxis_breaks = seq(from = floor(min(oil_2$value, na.rm = TRUE)/ coeff) * coeff,
                    to = ceiling(max(oil_2$value, na.rm = TRUE)/ coeff) * coeff, by = coeff)
 
 graph_oil = 
@@ -153,9 +152,7 @@ graph_oil =
     legend.position = "bottom"
   ) 
 
-graph_oil + ggsave(filename = file_graph, width = 12, height = 7)
-
-# export_graph(graph_oil, perim = "OIL", folder_name = "OIL_price", update = TRUE)
+graph_oil %>% ggsave(filename = file_graph, width = 12, height = 7)
 
 
 
@@ -163,7 +160,6 @@ graph_oil + ggsave(filename = file_graph, width = 12, height = 7)
 # DONNEES DU DERNIER TRIMESTRE
 
 oil_ %>% 
-  # filter(currency == "euro") %>% 
   mutate(quarter_ = quarter(date, with_year = TRUE),
          quarter2 = quarter(date)) %>% 
   drop_na() %>% 
@@ -182,3 +178,4 @@ oil_ %>%
   filter(year_ == year_value & month_ == last_month_value) %>% 
   group_by(name, month_, year_, month_abb) %>% 
   summarise(value = mean(value, na.rm = TRUE))
+

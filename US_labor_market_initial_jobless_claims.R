@@ -9,13 +9,12 @@ library(fredr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
-library(pRev)
 library(ISOcodes)
 library(RColorBrewer)
 
 date = gsub("-","",Sys.Date())
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
-link_cahierFI_excel = "M:/Usuels.dsc/pRev/FI/cahier_FI/excel"
+link_cahierFI_graph = Sys.getenv("HOME")
+link_cahierFI_excel = Sys.getenv("HOME")
 start_time = as.Date("2015-07-01")
 # start_time_TOTAL = as.Date("2008-01-01")
 start_time_TOTAL = start_time
@@ -134,12 +133,6 @@ ggplot() +
     legend.title = element_blank(),
     legend.position = "bottom"
   ) 
-gg_initial_jobless_claims_us + ggsave(file_graph, width = 15, height = 10)
-
-export_graph(gg_initial_jobless_claims_us, update = TRUE,
-             perim = "FI", folder_name = "jobless_claims_initial")
-export_graph(gg_initial_jobless_claims_us, update = TRUE,
-             perim = "US", folder_name = "jobless_claims_initial")
-
+gg_initial_jobless_claims_us %>% ggsave(file_graph, width = 15, height = 10)
 
 

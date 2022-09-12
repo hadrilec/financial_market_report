@@ -9,10 +9,9 @@ library(fredr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
-library(pRev)
 
 date = gsub("-","",Sys.Date())
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 start_time = as.Date("2018-12-01")
 file_name = paste0("graph_US_interbank_rate", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -118,6 +117,5 @@ graph_us_ir = ggplot(data = df,
     legend.position = "bottom"
   ) 
 
-graph_us_ir + ggsave(filename = file_graph, width = 20, height = 11)
+graph_us_ir %>% ggsave(filename = file_graph, width = 20, height = 11)
 
-export_graph(graph_us_ir, folder_name = "us_interbank_market", perim = "FI", update = TRUE)

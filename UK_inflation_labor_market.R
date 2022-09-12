@@ -10,7 +10,6 @@ library(fredr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
-library(pRev)
 
 getDataUKmonthly = function(datasetID, seriesKey){
   link = sprintf("https://api.ons.gov.uk/dataset/%s/timeseries/%s/data", datasetID, seriesKey)
@@ -36,7 +35,7 @@ uk_cpi = getDataUKmonthly("MM23", "L55O")
 uk_core_cpi = getDataUKmonthly("MM23", "DKO8")
 # DKO8
 
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 
 file_name = paste0("graph_UK_inflation_labor_market", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -125,8 +124,7 @@ graph_uk_labor_market = ggplot(data = data,
     legend.position = "bottom"
   ) 
 
-graph_uk_labor_market + ggsave(filename = file_graph, width = 12, height = 7)
+graph_uk_labor_market %>%  ggsave(filename = file_graph, width = 12, height = 7)
 
-export_graph(graph_uk_labor_market, perim = "FI", folder_name = "uk_labor_market")
 
 

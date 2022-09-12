@@ -10,7 +10,7 @@ library(dplyr)
 library(ggplot2)
 
 date = gsub("-","",Sys.Date())
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 
 file_name = paste0("graph_ZE_HICP", ".pdf" )
 file_graph_ZE_HICP = file.path(link_cahierFI_graph, file_name)
@@ -82,8 +82,7 @@ graph_ZE_HICP = ggplot(data = HICP, aes(x = time, y = values, colour = name, lin
     legend.position = "bottom"
   ) 
 
-graph_ZE_HICP + ggsave(file_graph_ZE_HICP, width = 12, height = 7)
+graph_ZE_HICP %>% ggsave(file_graph_ZE_HICP, width = 12, height = 7)
 
-export_graph(graph_ZE_HICP, folder_name = "inflation_zone_euro", perim = "FI", update = TRUE)
 
 

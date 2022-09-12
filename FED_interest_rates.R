@@ -9,11 +9,10 @@ library(fredr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
-library(pRev)
 
-date = gsub("-","",Sys.Date())
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
-link_cahierFI_excel = "M:/Usuels.dsc/pRev/FI/cahier_FI/excel"
+date = gsub("-", "", Sys.Date())
+link_cahierFI_graph = Sys.getenv("HOME")
+link_cahierFI_excel = Sys.getenv("HOME")
 start_time = as.Date("2014-01-01")
 file_name = paste0("graph_FED_interest_rates", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -98,15 +97,14 @@ graph_us_ir = ggplot(data = df,
     legend.position = "bottom"
   ) 
 
-graph_us_ir + ggsave(filename = file_graph, width = 12, height = 7)
+graph_us_ir %>%  ggsave(filename = file_graph, width = 12, height = 7)
 
-export_graph(graph_us_ir, perim = "FI", folder_name = "us_monterary_policy")
 
 
 # 
 #  export to csv
 # 
-link_cahierFI_excel = "M:/Usuels.dsc/pRev/FI/cahier_FI/excel"
+link_cahierFI_excel = Sys.getenv("HOME")
 file_excel = file.path(link_cahierFI_excel, paste0(gsub(".pdf|graph_","",file_name),".csv"))
 
 df = as.data.frame(df)

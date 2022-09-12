@@ -10,9 +10,8 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(tidyr)
-library(pRev)
 
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 
 file_name = paste0("graph_euro_exchange_rates_fast", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
@@ -83,81 +82,5 @@ graph_eur_exr_fast =
     legend.position = "bottom"
   ) 
 
-  graph_eur_exr_fast + ggsave(filename = file_graph, width = 12, height = 7)
-  
-  export_graph(graph_eur_exr_fast, folder_name = "eur_exr_fast",
-               perim = "FI", update = TRUE)
-  
-  start_date = as.Date("2020-03-10")
-  end_date   = as.Date("2020-06-30")
-  
-  seq_date = seq.Date(from = start_date, to = end_date, by = "1 day")
-  seq_date = seq_date[wday(seq_date) %in% c(2:6)]
-  
-  df_add_dollar = data.frame(date = seq_date, value = NA,
-                      label = "DOLLAR / EURO",
-                      quarter_ = quarter(seq_date, with_year = T), stringsAsFactors = F)
-  
-  data_euro_q = data %>% 
-    filter(str_detect(label, "DOLLAR")) %>% 
-    mutate(quarter_ = quarter(date, with_year = T)) %>% 
-    filter(str_detect(quarter_, "2020")) %>% 
-    mutate(date = as.Date(date)) %>% 
-    drop_na() %>% 
-    bind_rows(df_add_dollar) %>% 
-    mutate(value = case_when(quarter_ == "2020.2" ~ 1.12, 
-                             TRUE ~ as.numeric(value))) %>% 
-    mutate(value = case_when(is.na(value) ~ na.approx(value), 
-                             TRUE ~ as.numeric(value))) %>% 
-    group_by(quarter_) %>% 
-    mutate(mean_q = mean(value, na.rm = TRUE)) %>% 
-    mutate(month_ = paste(year(date), month(date))) %>% 
-    ungroup() %>% 
-    group_by(month_) %>% 
-    mutate(mean_m = mean(value, na.rm = TRUE))
-  
-  df_add_yen = data.frame(date = seq_date, value = NA,
-                             label = "YEN / EURO",
-                             quarter_ = quarter(seq_date, with_year = T), stringsAsFactors = F)
-  
-  
-  data_jpy_q = data %>% 
-    filter(label == "YEN / EURO") %>% 
-    mutate(quarter_ = quarter(date, with_year = T)) %>% 
-    filter(str_detect(quarter_, "2020")) %>% 
-    mutate(date = as.Date(date)) %>% 
-    drop_na() %>% 
-    bind_rows(df_add_yen) %>% 
-    mutate(value = case_when(quarter_ == "2020.2" ~ 120, 
-                             TRUE ~ as.numeric(value))) %>% 
-    mutate(value = case_when(is.na(value) ~ na.approx(value), 
-                             TRUE ~ as.numeric(value))) %>% 
-    group_by(quarter_) %>% 
-    mutate(mean_q = mean(value, na.rm = TRUE)) %>% 
-    mutate(month_ = paste(year(date), month(date))) %>% 
-    ungroup() %>% 
-    group_by(month_) %>% 
-    mutate(mean_m = mean(value, na.rm = TRUE))
-  
-  df_add_yen = data.frame(date = seq_date, value = NA,
-                          label = "POUND / EURO",
-                          quarter_ = quarter(seq_date, with_year = T), stringsAsFactors = F)
-  
-  data_gbp_q = data %>% 
-    filter(label == "POUND / EURO") %>% 
-    mutate(quarter_ = quarter(date, with_year = T)) %>% 
-    filter(str_detect(quarter_, "2020")) %>% 
-    mutate(date = as.Date(date)) %>% 
-    drop_na() %>% 
-    bind_rows(df_add_yen) %>% 
-    mutate(value = case_when(quarter_ == "2020.2" ~ 0.85, 
-                             TRUE ~ as.numeric(value))) %>% 
-    mutate(value = case_when(is.na(value) ~ na.approx(value), 
-                             TRUE ~ as.numeric(value))) %>% 
-    group_by(quarter_) %>% 
-    mutate(mean_q = mean(value, na.rm = TRUE)) %>% 
-    mutate(month_ = paste(year(date), month(date))) %>% 
-    ungroup() %>% 
-    group_by(month_) %>% 
-    mutate(mean_m = mean(value, na.rm = TRUE))
+graph_eur_exr_fast %>%  ggsave(filename = file_graph, width = 12, height = 7)
   
