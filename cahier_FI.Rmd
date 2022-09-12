@@ -1,0 +1,585 @@
+---
+title: "Cahier Marchés Financiers"
+output:
+  pdf_document: default
+geometry: "left=1.5cm,right=1.5cm,top=2cm,bottom=2cm"
+classoption: landscape
+---
+
+```{r setup, include=FALSE}
+options(warn=-1)
+
+# library(tidyverse)
+# library(rdbnomics)
+# library(rsdmx)
+# library(ggthemes)
+# library(grid)
+# library(lubridate)
+# library(eurostat)
+# library(fredr)
+# library(dplyr)
+
+link_cahierFI_code = Sys.getenv("HOME")
+update = FALSE
+
+```
+
+\newcommand*{\MyPath}{/home/onyxia}
+\input{\MyPath/chap1/ch1.tex}
+
+\newpage
+\vspace{5cm}
+\begin{center}
+\section{Politiques monétaires et inflation}
+\end{center}
+
+
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  # source(file.path(link_cahierFI_code, "Central_Banks_interest_rates_ecb_facl_dep.R"), encoding = "utf-8")
+}
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_cb_interest_rates.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "FED_interest_rates.R"), encoding = "utf-8")
+}
+
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_FED_interest_rates.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "ECB_interest_rates.R"), encoding = "utf-8")
+}
+
+```
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_ECB_interest_rates.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "ECB_bs_breakdown.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_ECB_bs_breakdown.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "FED_balance_sheet.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_FED_balance_sheet.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "US_interbank_rate.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_US_interbank_rate.pdf}
+\end{center}
+\end{figure}
+
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "Balance_Sheet_Central_Banks.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_balance_sheet.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "Balance_Sheet_GDP_Central_Banks.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_balance_sheet_gdp.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "WORLD_inflation.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_WORLD_inflation.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "OIL_price.R"), encoding = "utf-8")
+}
+# \begin{figure}[p]
+# \begin{center}
+# \includegraphics[width=1\columnwidth]{\MyPath/graph_oil_price.pdf} 
+# \end{center}
+# \end{figure}
+
+
+```
+
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "WORLD_core_inflation.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_WORLD_core_inflation.pdf} 
+\end{center}
+\end{figure}
+
+
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "US_inflation.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_US_inflation.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "US_expected_inflation.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_US_expected_inflation.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "US_labor_market.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_US_labor_market.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "US_export_investment.R"), encoding = "utf-8")
+}
+# \begin{figure}[p]
+# \begin{center}
+# \includegraphics[width=1\columnwidth]{\MyPath/graph_US_export_investment.pdf} 
+# \end{center}
+# \end{figure}
+```
+
+
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "UK_inflation_labor_market.R"), encoding = "utf-8")
+}
+# \begin{figure}[p]
+# \begin{center}
+# \includegraphics[width=1\columnwidth]{\MyPath/graph_UK_inflation_labor_market.pdf} 
+# \end{center}
+# \end{figure}
+```
+
+
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "EU_inflation.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_ZE_HICP.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "EU_inflation_forecasts.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_EU_inflation_forecasts.pdf} 
+\end{center}
+\end{figure}
+
+
+\newpage
+\vspace{5cm}
+\begin{center}
+\section{Taux souverains}
+\end{center}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "US_gov_bond.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_US_gov_bond.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "OAT_breakeven.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_OAT_breakeven.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "WORLD_gov_bond.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_WORLD_gov_bond.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "EU_gov_bond.R"), encoding = "utf-8")
+}
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_EU_gov_bond.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "EU_gov_bond_spread.R"), encoding = "utf-8")
+}
+
+```
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_EU_gov_bond_spread.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "EU_gov_debt.R"), encoding = "utf-8")
+}
+
+```
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_EU_gov_debt.pdf}
+\end{center}
+\end{figure}
+
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "EU_gov_debt_interest.R"), encoding = "utf-8")
+}
+
+```
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_EU_gov_debt_interest.pdf}
+\end{center}
+\end{figure}
+
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "EU_gov_bond_slope.R"), encoding = "utf-8")
+}
+
+```
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_EU_gov_bond_slope.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "Yield_curves.R"), encoding = "utf-8")
+}
+
+```
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_yield_curves.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/acp_pvr_explicatif.pdf} 
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/acp_composition_facteurs.pdf} 
+\end{center}
+\end{figure}
+
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/graph_acp_taux_souvr.pdf} 
+\end{center}
+\end{figure}
+
+\newpage
+\vspace{5cm}
+\begin{center}
+\section{Crédit aux ménages et aux entreprises en France}
+\end{center}
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "BDF_credit_menage.R"), encoding = "utf-8")
+}
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_BDF_credit_menage.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "BDF_credit_depot_menage.R"), encoding = "utf-8")
+}
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_BDF_credit_depot_menage.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "BDF_epargne_menage_agregat_M3.R"), encoding = "utf-8")
+}
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_BDF_epargne_menage_agregat_M3.pdf}
+\end{center}
+\end{figure}
+
+
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "BDF_encours_credit_secteur.R"), encoding = "utf-8")
+}
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_BDF_encours_credit_secteur.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "BDF_defaillance_entreprise.R"), encoding = "utf-8")
+}
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_BDF_defaillance_entreprise.pdf}
+\end{center}
+\end{figure}
+
+
+\newpage
+\vspace{5cm}
+\begin{center}
+\section{Bourses}
+\end{center}
+
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "FI_market_indices_zoom.R"), encoding = "utf-8")
+}
+
+```
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_FI_market_indices_zoom.pdf}
+\end{center}
+\end{figure}
+
+
+
+
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "FI_emerging_market_indices_zoom.R"), encoding = "utf-8")
+}
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_FI_em_market_indices_zoom.pdf}
+\end{center}
+\end{figure}
+
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "FI_MSCI_EM.R"), encoding = "utf-8")
+}
+
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_FI_msci_em.pdf}
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE, eval=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "FI_market_volatility.R"), encoding = "utf-8")
+}
+
+```
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_FI_market_volatility.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/stock_exchange/CAC40_contrib_index.pdf} 
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/stock_exchange/CAC40_contrib_index_sector.pdf} 
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/stock_exchange/CAC40_cap_prices.pdf} 
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/stock_exchange/CAC40_mrkt_share_index.pdf} 
+\end{center}
+\end{figure}
+
+\newpage
+\vspace{5cm}
+\begin{center}
+\section{Change}
+\end{center}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "Euro_exchange_rates.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_euro_exchange_rates.pdf} 
+\end{center}
+\end{figure}
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "Euro_exchange_rates_zoom.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_euro_exchange_rates_zoom.pdf} 
+\end{center}
+\end{figure}
+
+
+```{r, echo=FALSE}
+if(TRUE & update){
+  source(file.path(link_cahierFI_code, "Yuan_exchange_rates.R"), encoding = "utf-8")
+}
+```
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/graph_yuan_exchange_rates.pdf} 
+\end{center}
+\end{figure}
+
+
+
