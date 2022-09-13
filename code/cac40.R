@@ -9,6 +9,7 @@ url = 'https://en.wikipedia.org/wiki/CAC_40'
 
 table = read_html(url) %>% html_table(fill = TRUE)
 table = table[[4]]
+table = as.data.frame(table)
 
 names(table) = tolower(names(table))
 table = table[,c(4,1,2)]

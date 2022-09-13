@@ -10,11 +10,10 @@ library(dplyr)
 library(ggplot2)
 library(Quandl)
 library(zoo)
-library(pRev)
 
 number_month_backward = 6
 
-link_cahierFI_graph = "M:/Usuels.dsc/pRev/FI/cahier_FI/graph"
+link_cahierFI_graph = Sys.getenv("HOME")
 file_name = paste0("graph_yield_curves", ".pdf" )
 file_graph = file.path(link_cahierFI_graph, file_name)
 
@@ -23,7 +22,7 @@ us_bond = Quandl("USTREASURY/YIELD")
 
 path_ECB_FM = "https://sdw-wsrest.ecb.europa.eu/service/data/YC/"
 myUrl <- paste0(path_ECB_FM,"B.U2.EUR.4F.G_N_C+G_N_A.SV_C_YM.BETA0+BETA1+BETA2+BETA3+TAU1+TAU2?lastNObservations=600")
-data <- readSDMX2(myUrl)
+data <- readSDMX(myUrl)
 data <- as.data.frame(data)
 
 dates = intersect(as.character(as.Date(us_bond$Date)), as.character(as.Date(data$obsTime)))
@@ -126,7 +125,6 @@ graph_yc = ggplot(data = data_f, aes(x = x, y = value, colour = perim)) +
     legend.position = "bottom"
   ) 
 
-graph_yc + ggsave(filename = file_graph, width = 12, height = 7)
+graph_yc %>% ggsave(filename = file_graph, width = 12, height = 7)
 
-export_graph(graph_yc, perim = "FI", folder_name = "yc", update = TRUE)
 

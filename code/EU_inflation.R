@@ -82,7 +82,5 @@ graph_ZE_HICP = ggplot(data = HICP, aes(x = time, y = values, colour = name, lin
     legend.position = "bottom"
   ) 
 
-graph_ZE_HICP %>% ggsave(file_graph_ZE_HICP, width = 12, height = 7)
-
-
+graph_ZE_HICP %>% ggsave(filename = file_graph_ZE_HICP, width = 12, height = 7)
 

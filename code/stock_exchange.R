@@ -11,6 +11,7 @@ library(ggplot2)
 library(tidyr)
 library(RColorBrewer)
 library(stringr)
+library(rstudioapi)
 
 
 today_date = today()
@@ -23,8 +24,8 @@ start_date = as.Date('2017-12-01')
 
 start_date2 = start_date %m+% months(1)
 
-link_graph = "M:/Usuels.dsc/pRev/FI/prod/graph/stock_exchange"
-link_code = "M:/Usuels.dsc/pRev/FI/prod/code/stock_exchange"
+link_graph = Sys.getenv("HOME")
+link_code = dirname(rstudioapi::getSourceEditorContext()$path)
 
 list_file_index = c('cac40.R', 'footsie.R', 'dax.R',
                     'sp500.R', 'nikkei.R', 'shanghai.R')
@@ -90,7 +91,7 @@ for(ifile in 1:length(list_file_index)){
     url = sprintf('https://finance.yahoo.com/quote/%s?p=%s',ticker, ticker)
 
     df =  try(read_html(url))
-    if(class(df) == "try-error"){
+    if("try-error" %in% class(df)){
       next
     }
 
@@ -330,7 +331,7 @@ for(ifile in 1:length(list_file_index)){
     group_by(sector) %>% 
     mutate(growth_from_dec18 = 100*(cap_sector/cap_sector[time == as.Date("2018-12-01")]-1))
   
-  write.csv(dfIndex_sector, file = file.path(Sys.getenv("USERPROFILE"), "Desktop", "data_market_cap_sector.csv"))
+  write.csv(dfIndex_sector, file = file.path(Sys.getenv("HOME"), "data_market_cap_sector.csv"))
   
   dfIndex_market_val = dfIndex_market_val %>% drop_na()
 
@@ -365,7 +366,7 @@ for(ifile in 1:length(list_file_index)){
   # plot market valuation share of total ####
   #
 
-
+  gg = 
   ggplot(data = dfIndex_market_val,
          aes(x = time, y = cap_share, fill = company)) +
     geom_bar(stat = 'identity', position = 'dodge') +
@@ -383,8 +384,9 @@ for(ifile in 1:length(list_file_index)){
     ) +
     ggtitle(title_market_val) +
     labs(subtitle = subtt) +
-    guides(fill = guide_legend(ncol = 2)) +
-    ggsave(filename = file_mrkt_share_index, width = 15, height = 10)
+    guides(fill = guide_legend(ncol = 2)) 
+  
+    gg %>% ggsave(filename = file_mrkt_share_index, width = 15, height = 10)
 
   #
   # plot stock prices variation ####
@@ -394,6 +396,8 @@ for(ifile in 1:length(list_file_index)){
 
   title_facet = sprintf('Evolution du cours de bourse des entreprises du %s entre %s et %s', index_label, start_date2, today_date)
   subtitle = sprintf("Dernier point : %s", today_date)
+  
+  gg = 
   ggplot(dfIndex_bis, aes(x = time, y = Adjusted, colour = company)) +
     geom_line(show.legend = FALSE) +
     facet_wrap(~company, scales = 'free_y') +
@@ -404,9 +408,9 @@ for(ifile in 1:length(list_file_index)){
       axis.text.x = element_text(angle = 45, hjust = 1),
       strip.text = element_text(size = 14)
     ) +
-    # ggthemes::theme_stata() +
-    ggtitle(title_facet) +
-    ggsave(filename = file_cap_prices, width = 15, height = 10)
+    ggtitle(title_facet) 
+  
+  gg %>% ggsave(filename = file_cap_prices, width = 15, height = 10)
 
 
 
@@ -427,7 +431,8 @@ for(ifile in 1:length(list_file_index)){
   hypoth_2 = "- même les actions non flottantes sont comprises"
   subtitle = sprintf("%s", source_)
   caption = sprintf("%s %s / %s",  hypoth, hypoth_1, hypoth_2)
-
+  
+  gg =
   ggplot() +
     geom_bar(data = dfIndex_contrib,
              aes(x = time, y = contrib, fill = company),
@@ -456,8 +461,9 @@ for(ifile in 1:length(list_file_index)){
       legend.title = element_blank(),
       legend.position = 'right'
     ) + # guides(fill = guide_legend(nrow = 4, byrow = TRUE)) +
-    guides(fill = guide_legend(ncol = 2)) +
-    ggsave(filename = file_contrib, width = 15, height = 10)
+    guides(fill = guide_legend(ncol = 2)) 
+  
+    gg %>% ggsave(filename = file_contrib, width = 15, height = 10)
 
 
 
@@ -467,7 +473,7 @@ for(ifile in 1:length(list_file_index)){
   if('sector' %in% names(dfIndex_contrib_sector)){
 
     title_sector = sprintf("%s - variation de l'indice et contribution par secteur",index_label)
-
+    gg = 
     ggplot() +
       geom_bar(data = dfIndex_contrib_sector,
                aes(x = time, y = contrib, fill = sector),
@@ -496,8 +502,9 @@ for(ifile in 1:length(list_file_index)){
         legend.title = element_blank(),
         legend.position = 'right'
       ) +
-      guides(fill = guide_legend(ncol = 2)) +
-      ggsave(filename = file_contrib_sector, width = 15, height = 10)
+      guides(fill = guide_legend(ncol = 2)) 
+    
+      gg %>% ggsave(filename = file_contrib_sector, width = 15, height = 10)
   }
 
 
