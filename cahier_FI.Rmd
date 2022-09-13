@@ -1,14 +1,22 @@
 ---
-title: "Cahier Marchés Financiers"
+title: "Financial Market Report"
 output:
-  pdf_document: default
+  pdf_document: 
+    includes:
+      in_header: header.tex
+    keep_tex: true
 geometry: "left=1.5cm,right=1.5cm,top=2cm,bottom=2cm"
 classoption: landscape
 author: "Hadrien Leclerc"
 ---
 
+\newcommand*{\MyPath}{/home/onyxia}
+
+
 ```{r setup, include=FALSE}
 options(warn=-1)
+
+# tinytex::tlmgr_install("fancyhdr")
 
 # library(tidyverse)
 # library(rdbnomics)
@@ -33,7 +41,7 @@ if (update){
 
 ```
 
-\newcommand*{\MyPath}{/home/onyxia}
+
 
 \newpage
 \vspace{5cm}
