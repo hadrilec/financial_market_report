@@ -25,7 +25,6 @@ update = FALSE
 ```
 
 \newcommand*{\MyPath}{/home/onyxia}
-\input{\MyPath/chap1/ch1.tex}
 
 \newpage
 \vspace{5cm}
@@ -367,25 +366,6 @@ if(TRUE & update){
 \end{center}
 \end{figure}
 
-\begin{figure}[p]
-\begin{center}
-\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/acp_pvr_explicatif.pdf} 
-\end{center}
-\end{figure}
-
-\begin{figure}[p]
-\begin{center}
-\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/acp_composition_facteurs.pdf} 
-\end{center}
-\end{figure}
-
-
-\begin{figure}[p]
-\begin{center}
-\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/graph_acp_taux_souvr.pdf} 
-\end{center}
-\end{figure}
-
 \newpage
 \vspace{5cm}
 \begin{center}
@@ -519,25 +499,25 @@ if(TRUE & update){
 
 \begin{figure}[p]
 \begin{center}
-\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/stock_exchange/CAC40_contrib_index.pdf} 
+\includegraphics[width=1\columnwidth]{\MyPath/CAC40_contrib_index.pdf} 
 \end{center}
 \end{figure}
 
 \begin{figure}[p]
 \begin{center}
-\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/stock_exchange/CAC40_contrib_index_sector.pdf} 
+\includegraphics[width=1\columnwidth]{\MyPath/CAC40_contrib_index_sector.pdf} 
 \end{center}
 \end{figure}
 
 \begin{figure}[p]
 \begin{center}
-\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/stock_exchange/CAC40_cap_prices.pdf} 
+\includegraphics[width=1\columnwidth]{\MyPath/CAC40_cap_prices.pdf} 
 \end{center}
 \end{figure}
 
 \begin{figure}[p]
 \begin{center}
-\includegraphics[width=1\columnwidth]{M:/Usuels.dsc/pRev/FI/prod/graph/stock_exchange/CAC40_mrkt_share_index.pdf} 
+\includegraphics[width=1\columnwidth]{\MyPath/CAC40_mrkt_share_index.pdf} 
 \end{center}
 \end{figure}
 
