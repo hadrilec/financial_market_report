@@ -7,7 +7,6 @@ output:
     keep_tex: true
 geometry: "left=1.5cm,right=1.5cm,top=2cm,bottom=2cm"
 classoption: landscape
-author: "Hadrien Leclerc"
 ---
 
 \newcommand*{\MyPath}{/home/onyxia}
@@ -176,7 +175,7 @@ if (update){
 \newpage
 \vspace{5cm}
 \begin{center}
-\section{Crédit aux ménages et aux entreprises en France}
+\section{Crédit aux ménages et aux entreprises}
 \end{center}
 
 
@@ -213,6 +212,35 @@ if (update){
 \end{center}
 \end{figure}
 
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/taux_credit_nv_menage.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/taux_credit_nv_entreprise.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/gg_BLS_tot_offre.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/gg_BLS_tot_demande.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[width=1\columnwidth]{\MyPath/transaction_marche_monetaire_euro.pdf}
+\end{center}
+\end{figure}
 
 \newpage
 \vspace{5cm}
