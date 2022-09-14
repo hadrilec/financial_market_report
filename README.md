@@ -3,6 +3,8 @@
 This repo contains a library of plot regarding inflation, monetary policy, exchange and interest rates and labor market. All plots are then concatenated in a single pdf report.
 
 
+Feel free to contribute to this project!
+
 ```{r}
 # make report
 rmarkdown::render("cahier_FI.Rmd")
