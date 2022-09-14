@@ -5,7 +5,7 @@ This repo contains a library of plot regarding inflation, monetary policy, excha
 
 ```{r}
 # make report
-source("cahier_FI.Rmd")
+rmarkdown::render("cahier_FI.Rmd")
 
 ```
 
