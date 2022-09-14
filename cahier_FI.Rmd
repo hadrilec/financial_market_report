@@ -63,11 +63,6 @@ if (update){
 \end{center}
 \end{figure}
 
-\begin{figure}[p]
-\begin{center}
-\includegraphics[width=1\columnwidth]{\MyPath/graph_ECB_bs_breakdown_en.pdf}
-\end{center}
-\end{figure}
 
 \begin{figure}[p]
 \begin{center}
